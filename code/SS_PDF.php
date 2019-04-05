@@ -155,11 +155,11 @@ class SS_PDF {
      * @param string $class Dataobject class of file
      * @return DataObject The new created pdf file
      */
-    public function save($filename, $class = 'File') {
+    public function save($filename, $class = File::class) {
         if(!empty($this->pdf->getError())) {
             throw new Exception('Could not create PDF: ' . $this->pdf->getError());
         } else {
-            $filename = rtrim($class::create()->setName($filename), '.pdf') . '.pdf';
+            $filename = rtrim($class::create()->setFilename($filename), '.pdf') . '.pdf';
             $this->pdf->saveAs($this->folder . $filename);
             return $this->createFile($filename, $class);
         }
