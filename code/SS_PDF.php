@@ -113,7 +113,7 @@ class SS_PDF {
 
     /**
      * Generates the html code you need for the pdf
-     *
+     *f
      * @param DataObject $obj The base DataObject for your pdf
      * @param array $variables Array with customisation for your data.
      * @param string $template If submitted the name of the template used to generate the html.
@@ -175,7 +175,7 @@ class SS_PDF {
     protected function createFile($filename, $class) {
         $filename = trim($filename);
         $file = $class::create();
-        $file->setName($filename);
+        $file->Name($filename);
         $file->Filename = $this->folder . $filename;
         $file->ParentID = $this->folderID;
         $file->write();
@@ -202,7 +202,7 @@ class SS_PDF {
         if(!empty($this->pdf->getError())) {
             throw new Exception('Could not create PDF: ' . $this->pdf->getError());
         } else {
-            $filename = rtrim(File::create()->setName($filename), '.pdf') . '.pdf';
+            $filename = rtrim(File::create()->Name($filename), '.pdf') . '.pdf';
             $this->pdf->send($filename);
         }
     }
